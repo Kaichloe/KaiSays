@@ -1,6 +1,6 @@
 # Kai-Says
 
-Kai-Says is a take of the classic game Simon Says with extra twist and turns!
+Kai-Says is a take on the classic game Simon Says with extra twist and turns!
 
 ## Technologies
   * Vanilla JavaScript
