@@ -15,6 +15,4 @@
   Make use of HTML and CSS to display game board with color and animation (color lights up when relayed)
 
 ## Wireframe
- [WIREFRAME LINK ](https://imgur.com/a/30K6dXi)
-
-
+ ![Image description](https://i.imgur.com/g0dRUoT.png)
