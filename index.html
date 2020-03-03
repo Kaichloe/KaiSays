@@ -11,12 +11,61 @@
 
 <body>
   <script src="./dist/main.js"></script>
-  <div class="board">
-    <div class="red">RED</div>
-    <div class="blue">BLUE</div>
-    <div class="green">GREEN</div>
-    <div class="yellow">YELLOW</div>
-  </div>
+  <div class="whole-page">
+    <div class="container">
+
+      <div class="board-container">
+        <h1 class="title">Kai Says</h1>
+        <div id="red">RED</div>
+        <div id="blue">BLUE</div>
+        <div id="green">GREEN</div>
+        <div id="yellow">YELLOW</div>
+      </div>
+
+      <div class="game-button-container">
+        <button id="start">Start</button>
+        <div></div>
+        <label>Difficulty<p id="difficulty"></p><input
+          type="range"
+          min="1"
+          max="3"
+          value=1
+          className="slider"
+          id="myRange"
+        /></label>
+      </div>
+
+    </div>
+</div>
 </body>
+<script>
+  const myRangeInput = document.getElementById("myRange");
+
+  myRangeInput.onchange = function(){
+    let intensityLevel = "";
+    const sliderValue = document.getElementById("myRange").value
+    switch (sliderValue) {
+      case "1":
+        intensityLevel = "Ash";
+        break;
+      case "2":
+        intensityLevel = "Gary";
+        break;
+      case "3":
+        intensityLevel = "Kai";
+        break;
+      default:
+        intensityLevel = "Broken";
+        break;
+    }
+    const difficultyText = document.getElementById("difficulty");
+    difficultyText.innerHTML = intensityLevel;
+  }
+</script>
+<script src="./js/game_logic.js"></script>
+<script>
+  const difficultyText = document.getElementById("difficulty");
+  difficultyText.innerHTML = Kai.defaultLevel
+</script>
 
 </html>

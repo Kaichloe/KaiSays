@@ -2,10 +2,16 @@ const COLORS = ["red","green", "blue", "yellow"]
 
 let Kai = {
   sequence: [],
+  playerInput: [],
   gameOver: false,
-  level: 1,
-  mode: "normal"
+  defaultLevel: "Ash",
+  level: 1
 }
+
+  startButton = document.getElementById("start");
+  startButton.addEventListener('click', function(e){
+    // console.log("START")
+  })
 
 const sequenceGenerator = () => {
   randomIndex = Math.floor((Math.random() * 4))
@@ -15,7 +21,7 @@ const sequenceGenerator = () => {
 
 const colorRelay = () => {
   for (let i = 0; i < Kai.sequence.length; i++) {
-    button = document.getElementsByClassName(`${Kai.sequence[i]}`);
+    button = document.getElementById(`${Kai.sequence[i]}`);
     button.classList.add("active")
   }
 }
@@ -26,26 +32,11 @@ const colorRelay = () => {
 //   }
 // }
 
-
 const resetGame = () => {
   Kai = {
     sequence: [],
     gameOver: false,
-    level: 1,
-    mode: "normal"
+    defaultLevel: "Ash",
+    level: 1
   };
 }
-
-// const play = ()
-
-
-
-
-
-
-
-
-
-// const sequenceChecker = (input) => {
-
-// }
