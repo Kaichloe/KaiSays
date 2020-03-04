@@ -1,9 +1,39 @@
 .red{
-  font-size: 25px;
-  opacity: .5;
+  background-color: red;
+}
+
+
+
+.green{
+  background-color: green;
+}
+
+.green:hover{
+  background-color: darkgreen;
+}
+
+.yellow{
+  background-color: yellow ;
+}
+
+.yellow:hover{
+  background-color: darkgoldenrod;
+}
+
+.blue{
+  background-color: blue;
+}
+
+.blue:hover{
+  background-color: darkblue;
 }
 
 .active{
   opacity: 1;
+}
+
+.board-container{
+  display: flex;
+  justify-content: space-between;
 }
 
