@@ -1,5 +1,7 @@
 const COLORS = ["red","green", "blue", "yellow"]
 
+const randomComments = ["ok", "I see you", "Not bad", "Let's see you continue", "big money", "OK", "OK I SEE YOU"]
+
 let Kai = {
   sequence: [],
   playerInput: [],
@@ -45,30 +47,34 @@ const flashGreen = () => {
 
 //event listeners for click to get player input
 const redInput = red.addEventListener( "click", (e) => {
-  if (Kai.gameOn){
-    Kai.playerInput.push("red")
-    flashRed()
+  if (Kai.gameOn && !Kai.gameOver) {
+    Kai.playerInput.push("red");
+    flashRed();
+    setTimeout(checker, 500);
   }
 })
 
 const yellowInput = yellow.addEventListener("click", e => {
-  if (Kai.gameOn) {
+  if (Kai.gameOn && !Kai.gameOver) {
     Kai.playerInput.push("yellow");
-    flashYellow()
+    flashYellow();
+    setTimeout(checker, 500);
   }
 });
 
 const blueInput = blue.addEventListener("click", e => {
-  if (Kai.gameOn) {
+  if (Kai.gameOn && !Kai.gameOver) {
     Kai.playerInput.push("blue");
-    flashBlue()
+    flashBlue();
+    setTimeout(checker, 500);
   }
 });
 
 const greenInput = green.addEventListener("click", e => {
-  if (Kai.gameOn) {
+  if (Kai.gameOn && !Kai.gameOver) {
     Kai.playerInput.push("green");
     flashGreen()
+    setTimeout(checker, 500)
   }
 });
 
@@ -81,26 +87,25 @@ const sequenceGenerator = () => {
   // return Kai
 }
 
-const checker = () => {
-  
-}
-
 startButton = document.getElementById("start");
 startButton.addEventListener('click', function(e){
-  resetGame()
-  sequenceGenerator()
-  clearFlash()
-  ComputerTurn()
   if (startButton.innerHTML === "Start"){
+    resetGame();
+    sequenceGenerator();
+    clearFlash();
+    ComputerTurn();
     startButton.innerHTML = "Restart"
-  } else{
+  } else if (startButton.innerHTML === "Restart"){
+    
     startButton.innerHTML = "Start"
   }
-
+  
 })
 
+//computer turn disables player input 
 const ComputerTurn = () => {
   currentCorrectSequence = Kai.sequence.slice(0, Kai.level)
+  Kai.gameOn = false;
   for (let i = 0; i < currentCorrectSequence.length; i++) {
     switch (currentCorrectSequence[i]) {
       case "red":
@@ -119,22 +124,37 @@ const ComputerTurn = () => {
         break;
     }
   }
+  setTimeout(gameTrue, currentCorrectSequence.length * 1000)
 }
 
-//tester for flashes
+const gameTrue = () => {
+  Kai.gameOn = true;
+}
+
+// tester for flashes
 levelup = document.getElementById("test")
 levelup.addEventListener('click', function(e){
   Kai.level = Kai.level + 1
-  ComputerTurn()
+  setTimeout(ComputerTurn, 1000)
 })
 
-
-
-const GameColorRelay = () => {
-  for (let i = 0; i < Kai.sequence.length; i++) {
-    button = document.getElementById(`${Kai.sequence[i]}`);
-    button.classList.add("active")
+//checker- checks playerInput verus the currentCorrectSequence
+comments = document.getElementById("comments")
+const checker = () =>{
+  if (Kai.playerInput === currentCorrectSequence) {
+    randomIndex = Math.floor(Math.random() * 7);
+    comments.innerHTML = randomComments[randomIndex];
+    clearPlayerInput();
+    Kai.level = Kai.level + 1;
+    setTimeout(ComputerTurn, 1000);
+  } else {
+    comments.innerHTML = "GAME OVER";
+    loseFlash();
   }
+}
+
+const clearPlayerInput = () => {
+  Kai.playerInput = []
 }
 
 const resetGame = () => {
@@ -146,6 +166,7 @@ const resetGame = () => {
     defaultLevel: "Ash",
     level: 1
   };
+  comments.innerHTML = ""
 }
 
 const loseFlash = () =>{
@@ -153,5 +174,6 @@ const loseFlash = () =>{
   yellow.style.backgroundColor = "black";
   blue.style.backgroundColor = "black";
   green.style.backgroundColor = "black";
+  Kai.gameOver = true;
 }
 
