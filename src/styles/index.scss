@@ -1,9 +1,61 @@
+html {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+}
+
+input, h1, p, div {
+  margin: 0;
+  padding: 0;
+}
+
+.whole-page{
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
+}
+
+.container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+  width: 60%;
+}
+
+.board-container{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 500px;
+  width: 500px;
+}
+
+.top-colors{
+  display: flex;
+}
+
+.bottom-colors{
+  display: flex;
+}
+
+.color{
+  display: flex;
+  height: 250px;
+  width: 250px;
+}
+
 .red{
   background-color: red;
 }
-
-
-
 .green{
   background-color: green;
 }
@@ -28,12 +80,5 @@
   background-color: darkblue;
 }
 
-.active{
-  opacity: 1;
-}
 
-.board-container{
-  display: flex;
-  justify-content: space-between;
-}
 

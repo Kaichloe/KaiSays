@@ -1,6 +1,7 @@
 const COLORS = ["red","green", "blue", "yellow"]
 
-const randomComments = ["ok", "I see you", "Not bad", "Let's see you continue", "big money", "OK", "OK I SEE YOU"]
+const randomComments = ["ok", "I see you", "Not bad", "You smart", "big money", "OK", "OK I SEE YOU", "You loyal",
+"Keys to success"]
 
 let Kai = {
   sequence: [],
@@ -50,7 +51,8 @@ const redInput = red.addEventListener( "click", (e) => {
   if (Kai.gameOn && !Kai.gameOver) {
     Kai.playerInput.push("red");
     flashRed();
-    setTimeout(checker, 500);
+    
+setTimeout(checker, 500);
   }
 })
 
@@ -78,15 +80,16 @@ const greenInput = green.addEventListener("click", e => {
   }
 });
 
-//generates the correct sequence for the whole 15 rounds to win 
+//generates the correct sequence for the whole 10 rounds to win 
 const sequenceGenerator = () => {
-  for (let i = 0; i < 15; i++) {
+  for (let i = 0; i < 10; i++) {
     randomIndex = Math.floor((Math.random() * 4))
     Kai.sequence.push(COLORS[randomIndex])
   }
   // return Kai
 }
-
+ 
+// button starts, ends and says trying again when you lose 
 startButton = document.getElementById("start");
 startButton.addEventListener('click', function(e){
   if (startButton.innerHTML === "Start"){
@@ -94,12 +97,18 @@ startButton.addEventListener('click', function(e){
     sequenceGenerator();
     clearFlash();
     ComputerTurn();
-    startButton.innerHTML = "Restart"
-  } else if (startButton.innerHTML === "Restart"){
-    
+    startButton.innerHTML = "End Game"
+  } else if (startButton.innerHTML === "End Game"){
+    loseFlash();
+    comments.innerHTML = "SHAME"
     startButton.innerHTML = "Start"
+  } else {
+    resetGame();
+    sequenceGenerator();
+    clearFlash();
+    ComputerTurn();
+    startButton.innerHTML = "End Game"
   }
-  
 })
 
 //computer turn disables player input 
@@ -132,25 +141,38 @@ const gameTrue = () => {
 }
 
 // tester for flashes
-levelup = document.getElementById("test")
-levelup.addEventListener('click', function(e){
-  Kai.level = Kai.level + 1
-  setTimeout(ComputerTurn, 1000)
-})
+// levelup = document.getElementById("test")
+// levelup.addEventListener('click', function(e){
+//   Kai.level = Kai.level + 1
+//   setTimeout(ComputerTurn, 1000)
+// })
 
 //checker- checks playerInput verus the currentCorrectSequence
 comments = document.getElementById("comments")
 const checker = () =>{
-  if (Kai.playerInput === currentCorrectSequence) {
+  let currentCheck = Kai.playerInput.length -1
+  if (Kai.playerInput[currentCheck] === currentCorrectSequence[currentCheck]){
     randomIndex = Math.floor(Math.random() * 7);
     comments.innerHTML = randomComments[randomIndex];
+  } else {
+    comments.innerHTML = "GAME OVER";
+    startButton.innerHTML = "Try Again";
+    loseFlash(); 
+  }
+  
+  if (Kai.playerInput.length === 3){
+    winFlash();
+    Kai.gameOver = true;
+    startButton.innerHTML = "Start";
+  }
+
+  if (Kai.playerInput.length === currentCorrectSequence.length){
     clearPlayerInput();
     Kai.level = Kai.level + 1;
     setTimeout(ComputerTurn, 1000);
-  } else {
-    comments.innerHTML = "GAME OVER";
-    loseFlash();
   }
+
+  
 }
 
 const clearPlayerInput = () => {
@@ -176,4 +198,11 @@ const loseFlash = () =>{
   green.style.backgroundColor = "black";
   Kai.gameOver = true;
 }
+
+const winFlash = () => {
+  while (Kai.gameOver){
+    flashRed()
+  }
+}
+
 
