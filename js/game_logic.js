@@ -1,6 +1,6 @@
 const COLORS = ["red","green", "blue", "yellow"]
 
-const randomComments = ["ok", "I see you", "Not bad", "You smart", "big money", "OK", "OK I SEE YOU", "You loyal",
+const randomComments = ["ok", "I see you", "Not bad", "You smart", "BIG MONEY", "OK", "OK I SEE YOU", 
 "Keys to success"]
 
 let Kai = {
@@ -19,30 +19,38 @@ const blue = document.getElementById("blue");
 const green = document.getElementById("green");
 
 const clearFlash = () => {
-  red.style.backgroundColor = "red";
-  yellow.style.backgroundColor = "yellow";
-  blue.style.backgroundColor = "blue";
-  green.style.backgroundColor = "green";
+  red.style.backgroundColor = "#E01E5A";
+  red.style.border = "8px solid black";
+  yellow.style.backgroundColor = "#FFEB3B";
+  yellow.style.border = "8px solid black";
+  blue.style.backgroundColor = "#36C5F0";
+  blue.style.border = "8px solid black";
+  green.style.backgroundColor = "#2EB67D";
+  green.style.border = "8px solid black";
 }
 
 //button flashes 
 const flashRed = () =>{
-  red.style.backgroundColor = "darkred";
+  red.style.backgroundColor = "rgb(222, 0, 70)";
+  red.style.border = "8px solid antiquewhite"
   setTimeout(clearFlash, 500);
 }
 
 const flashYellow = () => {
-  yellow.style.backgroundColor = "darkgoldenrod";
+  yellow.style.backgroundColor = "rgb(255, 230, 0)";
+  yellow.style.border = "8px solid antiquewhite";
   setTimeout(clearFlash, 500);
 };
 
 const flashBlue = () => {
-  blue.style.backgroundColor = "darkblue";
+  blue.style.backgroundColor = " rgb(0, 175, 228)";
+  blue.style.border = "8px solid antiquewhite";
   setTimeout(clearFlash, 500);
 };
 
 const flashGreen = () => {
-  green.style.backgroundColor = "darkgreen";
+  green.style.backgroundColor = "rgb(0, 177, 103)";
+  green.style.border = "8px solid antiquewhite";
   setTimeout(clearFlash, 500);
 };
 
@@ -88,7 +96,10 @@ const sequenceGenerator = () => {
   }
   // return Kai
 }
- 
+level = document.getElementById("level-counter");
+const displayLevel = () =>{
+  level.innerHTML = `ROUND ${Kai.level}`
+}
 // button starts, ends and says trying again when you lose 
 startButton = document.getElementById("start");
 startButton.addEventListener('click', function(e){
@@ -97,17 +108,20 @@ startButton.addEventListener('click', function(e){
     sequenceGenerator();
     clearFlash();
     ComputerTurn();
-    startButton.innerHTML = "End Game"
-  } else if (startButton.innerHTML === "End Game"){
-    loseFlash();
+    displayLevel()
+    startButton.innerHTML = "END GAME"
+  } else if (startButton.innerHTML === "END GAME"){
+    clearFlash()
+    Kai.gameOver = true;
     comments.innerHTML = "SHAME"
-    startButton.innerHTML = "Start"
+    startButton.innerHTML = "START"
   } else {
     resetGame();
     sequenceGenerator();
     clearFlash();
     ComputerTurn();
-    startButton.innerHTML = "End Game"
+    displayLevel()
+    startButton.innerHTML = "END GAME"
   }
 })
 
@@ -152,11 +166,11 @@ comments = document.getElementById("comments")
 const checker = () =>{
   let currentCheck = Kai.playerInput.length -1
   if (Kai.playerInput[currentCheck] === currentCorrectSequence[currentCheck]){
-    randomIndex = Math.floor(Math.random() * 7);
+    randomIndex = Math.floor(Math.random() * 8);
     comments.innerHTML = randomComments[randomIndex];
   } else {
     comments.innerHTML = "GAME OVER";
-    startButton.innerHTML = "Try Again";
+    startButton.innerHTML = "TRY AGAIN";
     loseFlash(); 
   }
   
@@ -169,10 +183,9 @@ const checker = () =>{
   if (Kai.playerInput.length === currentCorrectSequence.length){
     clearPlayerInput();
     Kai.level = Kai.level + 1;
+    displayLevel()
     setTimeout(ComputerTurn, 1000);
   }
-
-  
 }
 
 const clearPlayerInput = () => {
@@ -188,7 +201,7 @@ const resetGame = () => {
     defaultLevel: "Ash",
     level: 1
   };
-  comments.innerHTML = ""
+  comments.innerHTML = "Kai Says"
 }
 
 const loseFlash = () =>{
@@ -201,7 +214,11 @@ const loseFlash = () =>{
 
 const winFlash = () => {
   while (Kai.gameOver){
-    flashRed()
+    flashRed();
+    flashYellow();
+    flashBlue();
+    flashGreen()
+    comments.innerHTML = "WINNER WINNER CHICKEN DINNER"
   }
 }
 

@@ -12,46 +12,53 @@
 <body>
   <script src="./dist/main.js"></script>
   <div class="whole-page">
+    <div class="comment-container">
+      <h1 id ="comments" class="title">Kai Says</h1>
+    </div>
     <div class="container">
-      <h1 class="title">Kai Says</h1>
+      <div class="inner-circle">
+        <button id="start" class="start-button">START</button>
+        <label id="level-counter" class="level-counter"></label>
+      </div>
 
       <div class="board-container">
         <div class="top-colors">
           <div id="green" class="green color"></div>
           <div id="red" class="red color"></div>
         </div>
+  
         <div class="bottom-colors">
           <div id="yellow" class="yellow color"></div>
           <div id="blue" class="blue color"></div>
         </div>
       </div>
-
-      <div class="game-button-container">
-        <!-- <button id="test">test</button> -->
-        <button id="start">Start</button>
-        <label id="level-counter"></label>
-        <div></div>
-        <label>Difficulty<p id="difficulty"></p><input
-          type="range"
-          min="1"
-          max="3"
-          value=1
-          class="slider"
-          id="myRange"
-        /></label>
-        <p id="comments"></p>
-      </div>
-
     </div>
+      <!-- <div class="game-difficulty-container">
+        <label>Difficulty<p id="difficulty"></p>
+          <input type="range" min="1" max="3" value=1 class="slider" id="myRange" /></label>
+      </div> -->
+      <div class="personal-links">
+        <div>
+          <a class="link" href="https://www.linkedin.com/in/kaiyip-ho-216230191/">
+            <img class="linkedin-border" src="https://image.flaticon.com/icons/svg/1384/1384088.svg" width="50px" />
+          </a>
+        </div>
+        <br />
+        <div>
+          <a class="link" href="https://github.com/Kaichloe">
+            <img class="git-border" src="https://image.flaticon.com/icons/svg/1051/1051377.svg" width="50px" />
+          </a>
+        </div>
+      </div>
 </div>
 </body>
-<script>
+<!-- <script>
   const myRangeInput = document.getElementById("myRange");
 
   myRangeInput.onchange = function(){
     let intensityLevel = "";
-    const sliderValue = document.getElementById("myRange").value
-    switch (sliderValue) {
+    const difficultyValue = document.getElementById("myRange").value
+    switch (difficultyValue) {
       case "1":
         intensityLevel = "Ash";
         break;
@@ -68,11 +75,11 @@
     const difficultyText = document.getElementById("difficulty");
     difficultyText.innerHTML = intensityLevel;
   }
-</script>
+</script> -->
 <script src="./js/game_logic.js"></script>
-<script>
+<!-- <script>
   const difficultyText = document.getElementById("difficulty");
   difficultyText.innerHTML = Kai.defaultLevel
-</script>
+</script> -->
 
 </html>
