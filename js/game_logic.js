@@ -182,13 +182,13 @@ const checker = () =>{
     loseFlash(); 
   }
   
-  if (Kai.playerInput.length === 10){
+  if (Kai.playerInput.length === 10 && Kai.playerInput.join() === currentCorrectSequence.join()){
     Kai.gameOver = true;
     winFlash();
     startButton.innerHTML = "Start";
   }
 
-  if (Kai.playerInput.length === currentCorrectSequence.length && Kai.playerInput.length !== 10){
+  if (Kai.playerInput.length === currentCorrectSequence.length){
     clearPlayerInput();
     Kai.level = Kai.level + 1;
     displayLevel()
