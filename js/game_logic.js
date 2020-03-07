@@ -29,28 +29,37 @@ const clearFlash = () => {
   green.style.border = "8px solid black";
 }
 
+const audioYellow = document.getElementById("yellowClip");
+const audioRed = document.getElementById("redClip");
+const audioBlue = document.getElementById("blueClip");
+const audioGreen = document.getElementById("greenClip");
+
 //button flashes 
 const flashRed = () =>{
   red.style.backgroundColor = "rgb(222, 0, 70)";
   red.style.border = "8px solid antiquewhite"
+  audioRed.play();
   setTimeout(clearFlash, 500);
 }
 
 const flashYellow = () => {
   yellow.style.backgroundColor = "rgb(255, 230, 0)";
   yellow.style.border = "8px solid antiquewhite";
+  audioYellow.play()
   setTimeout(clearFlash, 500);
 };
 
 const flashBlue = () => {
   blue.style.backgroundColor = " rgb(0, 175, 228)";
   blue.style.border = "8px solid antiquewhite";
+  audioBlue.play()
   setTimeout(clearFlash, 500);
 };
 
 const flashGreen = () => {
   green.style.backgroundColor = "rgb(0, 177, 103)";
   green.style.border = "8px solid antiquewhite";
+  audioGreen.play();
   setTimeout(clearFlash, 500);
 };
 
@@ -59,8 +68,7 @@ const redInput = red.addEventListener( "click", (e) => {
   if (Kai.gameOn && !Kai.gameOver) {
     Kai.playerInput.push("red");
     flashRed();
-    
-setTimeout(checker, 500);
+    setTimeout(checker, 500);
   }
 })
 
@@ -174,17 +182,17 @@ const checker = () =>{
     loseFlash(); 
   }
   
-  if (Kai.playerInput.length === 3){
-    winFlash();
+  if (Kai.playerInput.length === 10){
     Kai.gameOver = true;
+    winFlash();
     startButton.innerHTML = "Start";
   }
 
-  if (Kai.playerInput.length === currentCorrectSequence.length){
+  if (Kai.playerInput.length === currentCorrectSequence.length && Kai.playerInput.length !== 10){
     clearPlayerInput();
     Kai.level = Kai.level + 1;
     displayLevel()
-    setTimeout(ComputerTurn, 1000);
+    setTimeout(ComputerTurn, 1500);
   }
 }
 
@@ -213,13 +221,11 @@ const loseFlash = () =>{
 }
 
 const winFlash = () => {
-  while (Kai.gameOver){
-    flashRed();
-    flashYellow();
-    flashBlue();
-    flashGreen()
-    comments.innerHTML = "WINNER WINNER CHICKEN DINNER"
-  }
+  flashRed();
+  flashYellow();
+  flashBlue();
+  flashGreen()
+  comments.innerHTML = "WINNER WINNER CHICKEN DINNER"
 }
 
 

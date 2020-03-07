@@ -25,21 +25,20 @@ input, h1, p, div {
   flex-direction: column;
 }
 
-.container{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  height: 60%;
-  width: 100%;
-}
-
 .comment-container{
   display: flex;
   width: 100%;
   justify-content: center;
 }
 
+.container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
 .title{
   color: antiquewhite;
   font-family: "Maison Neue", "Segoe UI", Helvetica, Arial, sans-serif;
@@ -53,8 +52,7 @@ input, h1, p, div {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  height: 500px;
-  width: 500px;
+  height: 60vh;
   border-radius: 100px;
   position: absolute;
 }
@@ -65,8 +63,8 @@ input, h1, p, div {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 180px;
-  height: 180px;
+  width: 20vh;
+  height: 20vh;
   background: black;
   border-radius: 100%;
   z-index: 2;
@@ -109,16 +107,19 @@ input, h1, p, div {
 
 .top-colors{
   display: flex;
+  width: 60vh;
+  height: 60vh;
 }
 
 .bottom-colors{
   display: flex;
+  height: 60vh;
+  width: 60vh;
 }
 
 .color{
   display: flex;
-  height: 250px;
-  width: 250px;
+  width: 60vh;
   border: 8px solid black;
 }
 
@@ -135,7 +136,6 @@ input, h1, p, div {
   background-color:rgb(222, 0, 70);
   border: 8px solid antiquewhite;
 }
-
 
 .green{
   background-color: #2EB67D;
