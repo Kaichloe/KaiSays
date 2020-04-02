@@ -27,8 +27,9 @@ input, h1, p, div {
 
 .comment-container{
   display: flex;
+  flex-direction: column;
   width: 100%;
-  justify-content: center;
+  height: 20%;
 }
 
 .container{
@@ -43,9 +44,18 @@ input, h1, p, div {
   color: antiquewhite;
   font-family: "Maison Neue", "Segoe UI", Helvetica, Arial, sans-serif;
   font-weight: bold;
-  font-size: 45px;
-  margin-bottom: 15px;
+  font-size: 5vh;
   text-align: center;
+  margin-top: 10px;
+}
+
+.instructions{
+  color: antiquewhite;
+  font-family: "Maison Neue", "Segoe UI", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  font-size: 4vh;
+  text-align: center;
+  margin: 0;
 }
 
 .board-container{
@@ -82,6 +92,7 @@ input, h1, p, div {
   border-radius: 4px;
   border: 2px solid antiquewhite;
   text-align: center;
+  align-items: center;
 }
 
 .start-button:hover{
@@ -97,8 +108,7 @@ input, h1, p, div {
 .level-counter{
   display: flex;
   justify-content: center;
-  
-  height: 60%;
+  height: 40%;
   width: 100%;
   font-size: 13px;
   font-family: "Maison Neue", "Segoe UI", Helvetica, Arial, sans-serif;
@@ -168,18 +178,21 @@ input, h1, p, div {
 
 .footer{
   display: flex;
-  align-items: ;
+  flex-direction: column;
+  justify-content: space-around
 }
 
 .personal-links{
   display: flex;
   flex-direction: row;
   height: 10%;
-  margin: 20px;
+  margin: 10px;
+  justify-content: center;
 }
 
 .personal-links:hover{
   cursor: pointer;
+  filter: contrast();
 }
 
 .link{
@@ -198,12 +211,41 @@ input, h1, p, div {
   border: 1px solid antiquewhite;
 }
 
+
 .mode-button{
   border-radius: 100px;
-  height: 25%;
-  width: 25%;
+  height: 4vh;
+  width: 4vh;
   font-size: 10px;
   text-align: center;
+  background-color: antiquewhite
+}
+
+.mode-button:hover{
+  cursor: pointer;
+  background-color: red;
+}
+
+.mode-button:focus{
+  border: none;
+  border-color: none;
+  outline: none;
+}
+
+.copyright-container{
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.copyright{
+  text-decoration: none;
+  font-family: "Maison Neue", "Segoe UI", Helvetica, Arial, sans-serif;
+  color: antiquewhite;
+  text-align: center;
+}
+
+.copyright:hover{
+  cursor: pointer;
 }
 
 

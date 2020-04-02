@@ -6,20 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <link rel="stylesheet" href="./dist/main.css"/>
+  <link href="./js/png/favicon.ico" rel="icon" type="image/x-icon" />
   <title>Kai Says</title>
-
-  <!-- need to fix pokemon audio -->
-  <!-- <audio id="yellowClip" src="./js/sounds/yellow.mp3">
-  </audio>
-
-  <audio id="greenClip" src="./js/sounds/green.mp3">
-  </audio>
-
-  <audio id="redClip" src="./js/sounds/red.mp3">
-  </audio>
-
-  <audio id="blueClip" src="./js/sounds/blue.mp3">
-  </audio> -->
 
     <audio id="greenClip">
       <source src="https://s3.amazonaws.com/freecodecamp/simonSound1.mp3">
@@ -43,13 +31,15 @@
   <script src="./dist/main.js"></script>
   <div class="whole-page">
     <div class="comment-container">
-      <h1 id ="comments" class="title">Kai Says</h1>
+      <h1  class="title">Kai Says</h1>
+      <h2 id="comments" class="instructions">Repeat the sequence shown by the computer!</h2>
     </div>
     <div class="container">
       <div class="inner-circle">
         <label id="level-counter" class="level-counter"></label>
         <button id="start" class="start-button">START</button>
-        <button id="start" class="mode-button">I DARE YOU</button>
+        <br>
+        <button id="super" class="mode-button"> </button>
       </div>
 
       <div class="board-container">
@@ -64,10 +54,6 @@
         </div>
       </div>
     </div>
-      <!-- <div class="game-difficulty-container">
-        <label>Difficulty<p id="difficulty"></p>
-          <input type="range" min="1" max="3" value=1 class="slider" id="myRange" /></label>
-      </div> -->
       <div class="footer">
         <div class="personal-links">
           <div>
@@ -76,42 +62,20 @@
             </a>
           </div>
           <br />
-          <div>
+          <div >
             <a class="link" target="_blank" href="https://github.com/Kaichloe">
               <img class="git-border" src="https://image.flaticon.com/icons/svg/1051/1051377.svg" width="50px" />
             </a>
           </div>
-          <div>
-            <a target="_blank" href="kaichloe.github.io"><p>&copy; Kaiyip Ho. All rights reserved</p></a>
-          </div>
         </div>
+          <div class="copyright-container">
+            <a target="_blank" href="kaichloe.github.io" class="copyright"><p>  By Kaiyip Ho</p></a>
+          </div>
+        
       </div>
 </div>
 </body>
-<!-- <script>
-  const myRangeInput = document.getElementById("myRange");
 
-  myRangeInput.onchange = function(){
-    let intensityLevel = "";
-    const difficultyValue = document.getElementById("myRange").value
-    switch (difficultyValue) {
-      case "1":
-        intensityLevel = "Ash";
-        break;
-      case "2":
-        intensityLevel = "Gary";
-        break;
-      case "3":
-        intensityLevel = "Kai";
-        break;
-      default:
-        intensityLevel = "Broken";
-        break;
-    }
-    const difficultyText = document.getElementById("difficulty");
-    difficultyText.innerHTML = intensityLevel;
-  }
-</script> -->
 <script src="./js/game_logic.js"></script>
 <!-- <script>
   const difficultyText = document.getElementById("difficulty");

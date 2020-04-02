@@ -3,12 +3,14 @@ const COLORS = ["red","green", "blue", "yellow"]
 const randomComments = ["ok", "I see you", "Not bad", "You smart", "BIG MONEY", "OK", "OK I SEE YOU", 
 "Keys to success"]
 
+const INSTRUCTIONS = "Repeat the sequence of colors each round "
+
 let Kai = {
   sequence: [],
   playerInput: [],
   gameOn: false,
   gameOver: false,
-  defaultLevel: "Ash",
+  difficultyLevel: "Easy",
   level: 1
 }
 
@@ -33,34 +35,71 @@ const audioYellow = document.getElementById("yellowClip");
 const audioRed = document.getElementById("redClip");
 const audioBlue = document.getElementById("blueClip");
 const audioGreen = document.getElementById("greenClip");
+const easySpeed = 500
+const challengeSpeed = 300
+
+//flash codes for challenge mode
+const randomFlash = ["rgb(0, 177, 103)", "rgb(0, 175, 228)", "rgb(255, 230, 0)", "rgb(222, 0, 70)"]
 
 //button flashes 
 const flashRed = () =>{
-  red.style.backgroundColor = "rgb(222, 0, 70)";
-  red.style.border = "8px solid antiquewhite"
-  audioRed.play();
-  setTimeout(clearFlash, 500);
+  if (startButton.innerHTML === "END GAME" && Kai.difficultyLevel === "Easy"){
+    red.style.backgroundColor = "rgb(222, 0, 70)";
+    red.style.border = "8px solid antiquewhite"
+    audioRed.play();
+    setTimeout(clearFlash, easySpeed);
+  } else if (Kai.difficultyLevel === "CHALLENGE"){
+    randomFlashIndex = Math.floor(Math.random() * 4);
+    red.style.backgroundColor = randomFlash[randomFlashIndex];
+    red.style.border = "8px solid antiquewhite"
+    audioRed.play();
+    setTimeout(clearFlash, challengeSpeed)
+  }
 }
 
 const flashYellow = () => {
-  yellow.style.backgroundColor = "rgb(255, 230, 0)";
-  yellow.style.border = "8px solid antiquewhite";
-  audioYellow.play()
-  setTimeout(clearFlash, 500);
+  if (startButton.innerHTML === "END GAME" && Kai.difficultyLevel === "Easy"){
+    yellow.style.backgroundColor = "rgb(255, 230, 0)";
+    yellow.style.border = "8px solid antiquewhite";
+    audioYellow.play()
+    setTimeout(clearFlash, easySpeed);
+  } else if (Kai.difficultyLevel === "CHALLENGE") {
+    randomFlashIndex = Math.floor(Math.random() * 4);
+    yellow.style.backgroundColor = randomFlash[randomFlashIndex];
+    yellow.style.border = "8px solid antiquewhite"
+    audioYellow.play();
+    setTimeout(clearFlash, challengeSpeed)
+  }
 };
 
 const flashBlue = () => {
-  blue.style.backgroundColor = " rgb(0, 175, 228)";
-  blue.style.border = "8px solid antiquewhite";
-  audioBlue.play()
-  setTimeout(clearFlash, 500);
+  if (startButton.innerHTML === "END GAME" && Kai.difficultyLevel === "Easy"){
+    blue.style.backgroundColor = "rgb(0, 175, 228)";
+    blue.style.border = "8px solid antiquewhite";
+    audioBlue.play()
+    setTimeout(clearFlash, easySpeed);
+  } else if (Kai.difficultyLevel === "CHALLENGE") {
+    randomFlashIndex = Math.floor(Math.random() * 4);
+    blue.style.backgroundColor = randomFlash[randomFlashIndex];
+    blue.style.border = "8px solid antiquewhite"
+    audioBlue.play();
+    setTimeout(clearFlash, challengeSpeed)
+  }
 };
 
 const flashGreen = () => {
-  green.style.backgroundColor = "rgb(0, 177, 103)";
-  green.style.border = "8px solid antiquewhite";
-  audioGreen.play();
-  setTimeout(clearFlash, 500);
+  if (startButton.innerHTML === "END GAME" && Kai.difficultyLevel === "Easy") {
+    green.style.backgroundColor = "rgb(0, 177, 103)";
+    green.style.border = "8px solid antiquewhite";
+    audioGreen.play();
+    setTimeout(clearFlash, easySpeed);
+  } else if (Kai.difficultyLevel === "CHALLENGE") {
+    randomFlashIndex = Math.floor(Math.random() * 4);
+    green.style.backgroundColor = randomFlash[randomFlashIndex];
+    green.style.border = "8px solid antiquewhite"
+    audioGreen.play();
+    setTimeout(clearFlash, challengeSpeed)
+  }
 };
 
 //event listeners for click to get player input
@@ -68,7 +107,12 @@ const redInput = red.addEventListener( "click", (e) => {
   if (Kai.gameOn && !Kai.gameOver) {
     Kai.playerInput.push("red");
     flashRed();
-    setTimeout(checker, 500);
+
+    if (Kai.difficultyLevel === "Easy"){
+      setTimeout(checker, easySpeed);
+    } else{
+      setTimeout(checker, challengeSpeed);
+    }
   }
 })
 
@@ -76,7 +120,12 @@ const yellowInput = yellow.addEventListener("click", e => {
   if (Kai.gameOn && !Kai.gameOver) {
     Kai.playerInput.push("yellow");
     flashYellow();
-    setTimeout(checker, 500);
+    
+    if (Kai.difficultyLevel === "Easy") {
+      setTimeout(checker, easySpeed);
+    } else {
+      setTimeout(checker, challengeSpeed);
+    }
   }
 });
 
@@ -84,7 +133,12 @@ const blueInput = blue.addEventListener("click", e => {
   if (Kai.gameOn && !Kai.gameOver) {
     Kai.playerInput.push("blue");
     flashBlue();
-    setTimeout(checker, 500);
+    
+    if (Kai.difficultyLevel === "Easy") {
+      setTimeout(checker, easySpeed);
+    } else {
+      setTimeout(checker, challengeSpeed);
+    }
   }
 });
 
@@ -92,7 +146,12 @@ const greenInput = green.addEventListener("click", e => {
   if (Kai.gameOn && !Kai.gameOver) {
     Kai.playerInput.push("green");
     flashGreen()
-    setTimeout(checker, 500)
+    
+    if (Kai.difficultyLevel === "Easy") {
+      setTimeout(checker, easySpeed);
+    } else {
+      setTimeout(checker, challengeSpeed);
+    }
   }
 });
 
@@ -106,12 +165,14 @@ const sequenceGenerator = () => {
 }
 level = document.getElementById("level-counter");
 const displayLevel = () =>{
-  level.innerHTML = `ROUND ${Kai.level}`
+  if(Kai.level !== "none"){
+    level.innerHTML = `ROUND ${Kai.level}`
+  }
 }
 // button starts, ends and says trying again when you lose 
 startButton = document.getElementById("start");
 startButton.addEventListener('click', function(e){
-  if (startButton.innerHTML === "Start"){
+  if (startButton.innerHTML === "START"){
     resetGame();
     sequenceGenerator();
     clearFlash();
@@ -119,55 +180,73 @@ startButton.addEventListener('click', function(e){
     displayLevel()
     startButton.innerHTML = "END GAME"
   } else if (startButton.innerHTML === "END GAME"){
-    clearFlash()
-    Kai.gameOver = true;
+    loseFlash();
+    level.innerHTML = "";
     comments.innerHTML = "SHAME"
-    startButton.innerHTML = "START"
-  } else {
+    startButton.innerHTML = "TRY AGAIN"
+  } else if (startButton.innerHTML = "TRY AGAIN"){
     resetGame();
     sequenceGenerator();
     clearFlash();
     ComputerTurn();
     displayLevel()
-    startButton.innerHTML = "END GAME"
+    startButton.innerHTML = "END GAME";
   }
 })
+
 
 //computer turn disables player input 
 const ComputerTurn = () => {
   currentCorrectSequence = Kai.sequence.slice(0, Kai.level)
   Kai.gameOn = false;
-  for (let i = 0; i < currentCorrectSequence.length; i++) {
-    switch (currentCorrectSequence[i]) {
-      case "red":
-        setTimeout(flashRed, i * 1000)
-        break;
-      case "green":
-        setTimeout(flashGreen, i * 1000);
-        break;
-      case "yellow":
-        setTimeout(flashYellow, i * 1000);
-        break;
-      case "blue":
-        setTimeout(flashBlue, i * 1000);
-        break;
-      default:
-        break;
+  if (Kai.difficultyLevel === "Easy"){
+    for (let i = 0; i < currentCorrectSequence.length; i++) {
+      switch (currentCorrectSequence[i]) {
+        case "red":
+          setTimeout(flashRed, i * (2 * easySpeed))
+          break;
+        case "green":
+          setTimeout(flashGreen, i * (2 * easySpeed));
+          break;
+        case "yellow":
+          setTimeout(flashYellow, i * (2 * easySpeed));
+          break;
+        case "blue":
+          setTimeout(flashBlue, i * (2 * easySpeed));
+          break;
+        default:
+          break;
+      }
     }
+    setTimeout(gameTrue, currentCorrectSequence.length * 2 * easySpeed)
+
+  } else if (Kai.difficultyLevel === "CHALLENGE"){
+    for (let i = 0; i < currentCorrectSequence.length; i++) {
+      switch (currentCorrectSequence[i]) {
+        case "red":
+          setTimeout(flashRed, i * (2 * challengeSpeed))
+          break;
+        case "green":
+          setTimeout(flashGreen, i * (2 * challengeSpeed));
+          break;
+        case "yellow":
+          setTimeout(flashYellow, i * (2 * challengeSpeed));
+          break;
+        case "blue":
+          setTimeout(flashBlue, i * (2 * challengeSpeed));
+          break;
+        default:
+          break;
+      }
+    }
+    setTimeout(gameTrue, currentCorrectSequence.length * 2 * challengeSpeed)
+
   }
-  setTimeout(gameTrue, currentCorrectSequence.length * 1000)
 }
 
 const gameTrue = () => {
   Kai.gameOn = true;
 }
-
-// tester for flashes
-// levelup = document.getElementById("test")
-// levelup.addEventListener('click', function(e){
-//   Kai.level = Kai.level + 1
-//   setTimeout(ComputerTurn, 1000)
-// })
 
 //checker- checks playerInput verus the currentCorrectSequence
 comments = document.getElementById("comments")
@@ -181,18 +260,18 @@ const checker = () =>{
     startButton.innerHTML = "TRY AGAIN";
     loseFlash(); 
   }
+
+  if (Kai.playerInput.length === currentCorrectSequence.length && Kai.playerInput.join() === currentCorrectSequence.join()){
+    clearPlayerInput();
+    Kai.level = Kai.level + 1;
+    displayLevel()
+    setTimeout(ComputerTurn, 800);
+  }
   
   if (Kai.playerInput.length === 10 && Kai.playerInput.join() === currentCorrectSequence.join()){
     Kai.gameOver = true;
     winFlash();
-    startButton.innerHTML = "Start";
-  }
-
-  if (Kai.playerInput.length === currentCorrectSequence.length){
-    clearPlayerInput();
-    Kai.level = Kai.level + 1;
-    displayLevel()
-    setTimeout(ComputerTurn, 1500);
+    startButton.innerHTML = "START";
   }
 }
 
@@ -201,15 +280,27 @@ const clearPlayerInput = () => {
 }
 
 const resetGame = () => {
-  Kai = {
-    sequence: [],
-    playerInput: [],
-    gameOn: true,
-    gameOver: false,
-    defaultLevel: "Ash",
-    level: 1
-  };
-  comments.innerHTML = "Kai Says"
+  if (comments.innerHTML === "Challenge-Click the button that flashes"){
+    Kai = {
+      sequence: [],
+      playerInput: [],
+      gameOn: true,
+      gameOver: false,
+      difficultyLevel: "CHALLENGE",
+      level: 1
+    };
+  } else {
+    Kai = {
+      sequence: [],
+      playerInput: [],
+      gameOn: true,
+      gameOver: false,
+      difficultyLevel: "Easy",
+      level: 1
+    };
+    comments.innerHTML = ""
+    superMode.style.display = "none";
+  }
 }
 
 const loseFlash = () =>{
@@ -218,6 +309,9 @@ const loseFlash = () =>{
   blue.style.backgroundColor = "black";
   green.style.backgroundColor = "black";
   Kai.gameOver = true;
+  Kai.gameOn = false;
+  Kai.sequence = [];
+  superMode.style.display = "block";
 }
 
 const winFlash = () => {
@@ -228,4 +322,13 @@ const winFlash = () => {
   comments.innerHTML = "WINNER WINNER CHICKEN DINNER"
 }
 
+superMode = document.getElementById("super");
+superMode.addEventListener('click', function (e) {
+  if (!Kai.gameOn){
+    comments.innerHTML = "Challenge-Click the button that flashes";
+    superMode.style.display = "none";
+    startButton.innerHTML = "START";
+    clearFlash();
+  }
+})
 
