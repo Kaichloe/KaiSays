@@ -324,10 +324,15 @@ const winFlash = () => {
 
 superMode = document.getElementById("super");
 superMode.addEventListener('click', function (e) {
-  if (!Kai.gameOn){
+  if (!Kai.gameOn && comments.innerHTML === "Repeat the sequence shown by the computer!"){
     comments.innerHTML = "Challenge-Click the button that flashes";
-    superMode.style.display = "none";
     startButton.innerHTML = "START";
+    superMode.style.backgroundColor = "red"
+    clearFlash();
+  } else if (!Kai.gameOn && comments.innerHTML === "Challenge-Click the button that flashes"){
+    comments.innerHTML = "Repeat the sequence shown by the computer!";
+    startButton.innerHTML = "START";
+    superMode.style.backgroundColor = "#212121"
     clearFlash();
   }
 })

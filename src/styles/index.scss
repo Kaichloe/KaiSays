@@ -213,12 +213,15 @@ input, h1, p, div {
 
 
 .mode-button{
-  border-radius: 100px;
-  height: 4vh;
-  width: 4vh;
-  font-size: 10px;
+  border-radius: 4px;
+  border: 2px solid antiquewhite;
+  height: 5vh;
+  width: 10vh;
   text-align: center;
-  background-color: antiquewhite
+  color: antiquewhite;
+  font-size: 8px;
+  font-family: "Maison Neue", "Segoe UI", Helvetica, Arial, sans-serif;
+   background-color: #212121;
 }
 
 .mode-button:hover{
