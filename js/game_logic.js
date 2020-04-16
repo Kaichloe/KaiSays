@@ -280,7 +280,7 @@ const clearPlayerInput = () => {
 }
 
 const resetGame = () => {
-  if (comments.innerHTML === "Challenge-Click the button that flashes"){
+  if (Kai.difficultyLevel === "CHALLENGE"){
     Kai = {
       sequence: [],
       playerInput: [],
@@ -299,7 +299,7 @@ const resetGame = () => {
       level: 1
     };
     comments.innerHTML = ""
-    superMode.style.display = "none";
+    
   }
 }
 
@@ -311,7 +311,7 @@ const loseFlash = () =>{
   Kai.gameOver = true;
   Kai.gameOn = false;
   Kai.sequence = [];
-  superMode.style.display = "block";
+  
 }
 
 const winFlash = () => {
@@ -324,16 +324,18 @@ const winFlash = () => {
 
 superMode = document.getElementById("super");
 superMode.addEventListener('click', function (e) {
-  if (!Kai.gameOn && comments.innerHTML === "Repeat the sequence shown by the computer!"){
+  if (!Kai.gameOn && Kai.difficultyLevel === "Easy"){
+    Kai.difficultyLevel = "CHALLENGE"
     comments.innerHTML = "Challenge-Click the button that flashes";
     startButton.innerHTML = "START";
     superMode.style.backgroundColor = "red"
     clearFlash();
-  } else if (!Kai.gameOn && comments.innerHTML === "Challenge-Click the button that flashes"){
+  } else if (!Kai.gameOn && Kai.difficultyLevel === "CHALLENGE"){
+    Kai.difficultyLevel = "Easy"
     comments.innerHTML = "Repeat the sequence shown by the computer!";
     startButton.innerHTML = "START";
     superMode.style.backgroundColor = "#212121"
     clearFlash();
-  }
+  } 
 })
 
