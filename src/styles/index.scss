@@ -62,7 +62,7 @@ input, h1, p, div {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  height: 60vh;
+  height: 40vh;
   border-radius: 100px;
   position: absolute;
 }
@@ -85,7 +85,7 @@ input, h1, p, div {
 .start-button{
   position: absolute;
   font-family: "Maison Neue", "Segoe UI", Helvetica, Arial, sans-serif;
-  background-color: blue;
+  background-color: #222121;
   height: 20%;
   width: 70%;
   color: antiquewhite;
@@ -116,19 +116,17 @@ input, h1, p, div {
 
 .top-colors{
   display: flex;
-  width: 60vh;
-  height: 60vh;
+  
 }
 
 .bottom-colors{
   display: flex;
-  height: 60vh;
-  width: 60vh;
 }
 
 .color{
   display: flex;
-  width: 60vh;
+  height: 35vh;
+  width: 35vh;
   border: 8px solid black;
 }
 
