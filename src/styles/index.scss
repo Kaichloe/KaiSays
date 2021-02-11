@@ -116,7 +116,6 @@ input, h1, p, div {
 
 .top-colors{
   display: flex;
-  
 }
 
 .bottom-colors{
@@ -125,6 +124,10 @@ input, h1, p, div {
 
 .color{
   display: flex;
+  @media screen {
+    height: 35vw;
+    width:35vw;
+  }
   height: 35vh;
   width: 35vh;
   border: 8px solid black;
